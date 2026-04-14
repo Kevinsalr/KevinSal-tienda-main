@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+    <!-- HEADER -->
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <!-- BOTÓN AGREGAR (fragmento) -->
+    <section th:replace="~{constante/fragmentos :: agregar}"></section>
+
+    <!-- 🔹 TABLA DE CONSTANTES -->
+    <section>
+        <div class="container mt-4">
+            <h2>Listado de Constantes</h2>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Atributo</th>
+                        <th>Valor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="c : ${constantes}">
+                        <td th:text="${c.idConstante}"></td>
+                        <td th:text="${c.atributo}"></td>
+                        <td th:text="${c.valor}"></td>
+
+                        <td>
+                            <!-- EDITAR -->
+                            <a th:href="@{/constante/modificar/{id}(id=${c.idConstante})}"
+                               class="btn btn-warning btn-sm">
+                                Editar
+                            </a>
+
+                            <!-- ELIMINAR -->
+                            <a th:href="@{/constante/eliminar/{id}(id=${c.idConstante})}"
+                               class="btn btn-danger btn-sm">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Total de constantes: <span th:text="${totalConstantes}"></span></p>
+        </div>
+    </section>
+
+    <!-- MENSAJES -->
+    <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>

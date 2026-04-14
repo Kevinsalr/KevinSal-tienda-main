@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/plantilla :: head}"></head>
+
+<body>
+
+<!-- 🔹 BOTÓN AGREGAR -->
+<section th:fragment="agregar">
+    <div class="container my-2">
+        <div class="row pb-2 bg-light">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#agregarConstanteModal">
+                    <i class="fa-solid fa-plus"></i> Agregar Constante
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 MODAL -->
+    <div class="modal fade" id="agregarConstanteModal" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">Agregar Constante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form th:action="@{/constante/guardar}" method="post" th:object="${constante}">
+                    
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="atributo">Atributo</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{atributo}" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="valor">Valor</label>
+                            <input type="text" class="form-control"
+                                   th:field="*{valor}" required />
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Guardar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

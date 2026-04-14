@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+    <!-- HEADER -->
+    <header th:replace="~{general/fragmentos :: header}"></header>
+
+    <!-- 🔹 FORMULARIO DE EDICIÓN -->
+    <section>
+        <div class="container mt-4">
+            <h2>Modificar Constante</h2>
+
+            <form th:action="@{/constante/guardar}" method="post" th:object="${constante}">
+
+                <!-- ID OCULTO -->
+                <input type="hidden" th:field="*{idConstante}" />
+
+                <div class="mb-3">
+                    <label>Atributo</label>
+                    <input type="text" class="form-control"
+                           th:field="*{atributo}" required />
+                </div>
+
+                <div class="mb-3">
+                    <label>Valor</label>
+                    <input type="text" class="form-control"
+                           th:field="*{valor}" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Guardar
+                </button>
+
+                <a th:href="@{/constante/listado}" class="btn btn-secondary">
+                    Cancelar
+                </a>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- MENSAJES -->
+    <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
+
+    <!-- FOOTER -->
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>
