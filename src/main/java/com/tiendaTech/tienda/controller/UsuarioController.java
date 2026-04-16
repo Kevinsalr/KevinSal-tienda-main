@@ -13,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+ 
+// Controlador encargado de gestionar las operaciones CRUD de usuarios. 
+// Maneja la interacción entre la vista y la lógica de negocio.
 
 @Controller
 @RequestMapping("/usuario")
@@ -35,6 +38,9 @@ public class UsuarioController {
         return "/usuario/listado";
     }
 
+ // Guarda un usuario nuevo o actualiza uno existente.
+ // Valida errores y maneja mensajes de éxito o fallo.
+    
     @PostMapping("/guardar")
     public String guardar(@Valid Usuario usuario,
             BindingResult bindingResult,
